@@ -2,6 +2,17 @@
 #include <iomanip>
 #include <cmath>
 
+  void line() {
+    std::cout << "==============================\n";
+  }
+
+  float time(float d, float s) {
+      float result;
+      //declaring the operations inside the function
+      result = d / s;
+      return(result);
+  }
+
 int main () {
 
     //These 2 lines set the decimal places throughout the project.
@@ -34,11 +45,8 @@ int main () {
       std::cout << "For " << Disc[i] << " distance, you entered: " << Dist[i] << " meters\n";
     }
 
-    //An array of the time taken for each discipline
-    float Time[] = {Dist[0]/Speed[0], Dist[1]/Speed[1], Dist[2]/Speed[2]};
-
-    //Adding a gap (makes it tidy)
-    std::cout << std::endl;
+    //This sums up the times to complete each section.
+    float total = time(Dist[0], Speed[0]) + time(Dist[1], Speed[1]) + time(Dist[2], Speed[2]);
 
     //This if statement forces the user to enter positive integers for the distances
     if (Dist[0] < 0 || Dist[1] < 0 || Dist [2] < 0){
@@ -46,20 +54,19 @@ int main () {
     }
       else {
         //Setting up heading of the title
-        std::cout << "Discipline\t" << "Time Taken (s)\n";
-        std::cout << "==============================\n";
+        std::cout << "\n" << "Discipline\t" << "Time Taken (s)\n";
+        line();
 
         //This loop outputs our discipline and the accompanying time taken, it also sets the decimal places
         for (int i = 0; i < 3; i++) {
-          std::cout << std::setprecision(3);
-          std::cout << Disc[i] << " \t" << Time[i] * pow(60, 2) <<"\n";
-            }
-              std::cout << "\n";
-
-              //This tells the user the total time
-              std::cout << std::setprecision(2);
-              std::cout << "Therefore, the total time would be " << Time[0] + Time[1] + Time[2] << " Hours";
+            std::cout << std::setprecision(3);
+            std::cout << Disc[i] << " \t" << time(Dist[i], Speed[i]) * pow(60, 2) <<"\n";
+              }
         }
 
+    //This tells the user the total time
+    std::cout << "\n" << std::setprecision(2);
+    //This outputs the total time
+    std::cout << "Therefore, the total time would be " << total << " Hours";
 
 }
